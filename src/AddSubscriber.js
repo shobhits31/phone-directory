@@ -2,7 +2,24 @@ import React, { Component } from "react";
 import Header from "./Header";
 
 class AddSubscriber extends Component {
+  constructor() {
+    super();
+    this.state = {
+      id: 0,
+      name: "",
+      phone: "",
+    };
+  }
+
+  inputChangedHandler = (e) => {
+    const state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
+    console.log(this.state);
+  };
+
   render() {
+    const { name, phone } = this.state;
     return (
       <div>
         <Header heading="Add Subscriber" />
@@ -18,6 +35,7 @@ class AddSubscriber extends Component {
               type="text"
               className="input-control"
               name="name"
+              onChange={this.inputChangedHandler}
             />
             <br />
             <br />
@@ -30,6 +48,7 @@ class AddSubscriber extends Component {
               type="text"
               className="input-control"
               phone="phone"
+              onChange={this.inputChangedHandler}
             />
             <br />
             <br />
@@ -39,9 +58,9 @@ class AddSubscriber extends Component {
                 Subscriber to be added:{" "}
               </span>
               <br />
-              <span className="subscriber-info">Name: </span>
+              <span className="subscriber-info">Name: {name}</span>
               <br />
-              <span className="subscriber-info">Phone: </span>
+              <span className="subscriber-info">Phone: {phone}</span>
               <br />
             </div>
             <button type="submit" className="custom-btn add-btn">
